@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mb-6 text-4xl font-light">{{ title }}</h1>
+  <form class="max-w-xl [&_input:not([type=checkbox])]:w-full [&_select]:w-full [&_textarea]:w-full" method="post">
+    {% csrf_token %}
+    {% for error in form.non_field_errors %}
+      <div class="mb-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-red-800">{{ error }}</div>
+    {% endfor %}
+    {% for field in form %}
+      {% include 'components/field.html' %}
+    {% endfor %}
+    <input class="cursor-pointer rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700" type="submit" value="{{ button_text }}">
+  </form>
+{% endblock %}

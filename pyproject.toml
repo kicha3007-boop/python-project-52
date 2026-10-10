@@ -1,0 +1,31 @@
+[project]
+name = "hexlet-code"
+version = "0.1.0"
+description = "Task Manager: tasks, statuses, labels and executors"
+authors = [{ name = "Kichigin Sergey", email = "kicha3007@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dj-database-url>=2.3.0",
+    "django>=5.2",
+    "django-filter>=25.1",
+    "django-tailwind-cli>=4.2.0",
+    "gunicorn>=23.0.0",
+    "psycopg2-binary>=2.9.10",
+    "python-dotenv>=1.0.1",
+    "sentry-sdk>=2.20.0",
+    "whitenoise>=6.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "coverage>=7.6.0",
+    "ruff>=0.6.0",
+]
+
+[tool.coverage.run]
+source = ["task_manager"]
+omit = ["*/migrations/*", "task_manager/asgi.py", "task_manager/wsgi.py"]
+
+[tool.coverage.report]
+fail_under = 90

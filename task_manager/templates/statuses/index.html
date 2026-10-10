@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mb-6 text-4xl font-light">Статусы</h1>
+  <a class="mb-6 inline-block rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700" href="{% url 'statuses_create' %}">Создать статус</a>
+  <table class="w-full border-collapse text-left">
+    <thead>
+      <tr class="border-b border-gray-300">
+        {% include 'components/header_cell.html' with title='ID' %}
+        {% include 'components/header_cell.html' with title='Имя' %}
+        {% include 'components/header_cell.html' with title='Дата создания' %}
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in statuses %}
+        <tr class="border-b border-gray-100">
+          <td class="px-4 py-2">{{ object.id }}</td>
+          <td class="px-4 py-2">{{ object.name }}</td>
+          <td class="px-4 py-2">{{ object.created_at|date:'d.m.Y H:i' }}</td>
+          {% include 'components/row_actions.html' with update_url='statuses_update' delete_url='statuses_delete' %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

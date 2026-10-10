@@ -1,0 +1,25 @@
+{% load tailwind_cli %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Менеджер задач Hexlet</title>
+    {% tailwind_css %}
+  </head>
+
+  <body class="flex min-h-screen flex-col bg-white text-gray-900">
+    {% include 'components/nav.html' %}
+
+    <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+      {% include 'components/messages.html' %}
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-t border-gray-200 py-4">
+      <div class="mx-auto max-w-6xl px-4 text-center text-sm text-gray-600">
+        <a class="text-blue-600 hover:underline" href="https://ru.hexlet.io" target="_blank">Hexlet</a>
+      </div>
+    </footer>
+  </body>
+</html>

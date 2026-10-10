@@ -1,0 +1,75 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "username": "jdoe",
+      "first_name": "John",
+      "last_name": "Doe",
+      "password": "pbkdf2_sha256$1000000$salt$placeholder",
+      "is_active": true,
+      "date_joined": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "username": "asmith",
+      "first_name": "Anna",
+      "last_name": "Smith",
+      "password": "pbkdf2_sha256$1000000$salt$placeholder",
+      "is_active": true,
+      "date_joined": "2026-01-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "statuses.status",
+    "pk": 1,
+    "fields": {"name": "новый", "created_at": "2026-01-01T00:00:00Z"}
+  },
+  {
+    "model": "statuses.status",
+    "pk": 2,
+    "fields": {"name": "в работе", "created_at": "2026-01-01T00:00:00Z"}
+  },
+  {
+    "model": "labels.label",
+    "pk": 1,
+    "fields": {"name": "bug", "created_at": "2026-01-01T00:00:00Z"}
+  },
+  {
+    "model": "labels.label",
+    "pk": 2,
+    "fields": {"name": "feature", "created_at": "2026-01-01T00:00:00Z"}
+  },
+  {
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+      "name": "Fix login",
+      "description": "Login form fails",
+      "status": 1,
+      "author": 1,
+      "executor": 2,
+      "created_at": "2026-01-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+      "name": "Add filter",
+      "description": "",
+      "status": 2,
+      "author": 2,
+      "executor": null,
+      "created_at": "2026-01-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "tasks.tasklabel",
+    "pk": 1,
+    "fields": {"task": 1, "label": 1}
+  }
+]

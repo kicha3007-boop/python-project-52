@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mb-6 text-4xl font-light">Задачи</h1>
+  <a class="mb-6 inline-block rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700" href="{% url 'tasks_create' %}">Создать задачу</a>
+
+  <form class="mb-6 flex flex-wrap items-end gap-4 rounded bg-gray-100 p-4" method="get">
+    {% for field in filter.form %}
+      {% if field.name == 'self_tasks' %}
+        <div class="flex items-center gap-2 pb-2">
+          {{ field }}
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+      {% else %}
+        <div>
+          <label class="mb-1 block" for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+        </div>
+      {% endif %}
+    {% endfor %}
+    <input class="cursor-pointer rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700" type="submit" value="Показать">
+  </form>
+
+  <table class="w-full border-collapse text-left">
+    <thead>
+      <tr class="border-b border-gray-300">
+        {% include 'components/header_cell.html' with title='ID' %}
+        {% include 'components/header_cell.html' with title='Имя' %}
+        {% include 'components/header_cell.html' with title='Статус' %}
+        {% include 'components/header_cell.html' with title='Автор' %}
+        {% include 'components/header_cell.html' with title='Исполнитель' %}
+        {% include 'components/header_cell.html' with title='Дата создания' %}
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in tasks %}
+        <tr class="border-b border-gray-100">
+          <td class="px-4 py-2">{{ object.id }}</td>
+          <td class="px-4 py-2">
+            <a class="text-blue-600 hover:underline" href="{% url 'tasks_show' object.pk %}">{{ object.name }}</a>
+          </td>
+          <td class="px-4 py-2">{{ object.status }}</td>
+          <td class="px-4 py-2">{{ object.author }}</td>
+          <td class="px-4 py-2">{{ object.executor|default:'' }}</td>
+          <td class="px-4 py-2">{{ object.created_at|date:'d.m.Y H:i' }}</td>
+          {% include 'components/row_actions.html' with update_url='tasks_update' delete_url='tasks_delete' %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

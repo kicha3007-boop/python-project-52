@@ -1,0 +1,26 @@
+name: Python CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          pip install uv
+          make install
+      - name: Run linter
+        run: |
+          make lint
+      # Порог покрытия задан в pyproject.toml ([tool.coverage.report] fail_under)
+      - name: Run tests with coverage
+        run: |
+          make test-coverage

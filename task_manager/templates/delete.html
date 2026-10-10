@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mb-6 text-4xl font-light">{{ title }}</h1>
+  <p class="mb-6">Вы уверены, что хотите удалить {{ object }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <input class="cursor-pointer rounded bg-red-600 px-6 py-2 text-white hover:bg-red-700" type="submit" value="Да, удалить">
+  </form>
+{% endblock %}
